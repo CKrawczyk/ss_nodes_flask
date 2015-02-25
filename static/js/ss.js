@@ -9,6 +9,13 @@ Array.prototype.contains = function(obj) {
 	return false;
 };
 
+$('#playButton').click(function () {
+    $('#carousel-image').carousel('cycle');
+});
+$('#pauseButton').click(function () {
+    $('#carousel-image').carousel('pause');
+});
+
 // set up the margins and such
 var W = parseInt(d3.select('#tree').style('width'));
 var origin_y = -.5*parseInt(d3.select(".carousel-inner").style("height"));

@@ -23,6 +23,20 @@
     opacity: .3;
 }
 
+#carouselButtons {
+    width: 100%;
+    position: absolute;
+    bottom: 7px;
+    z-index: 50;
+    text-align: center;
+}
+
+#playButton,
+#pauseButton {
+    border-radius: 5px;
+    z-index: 50;
+}
+
 .gnode {
     cursor: pointer;
 }
@@ -224,5 +238,8 @@ input[type='range']::-moz-focus-outer {
     }
     .slider_label {
         font-size: 12px;
+    }
+    #carouselButtons{
+        bottom: 0px;
     }
 }
