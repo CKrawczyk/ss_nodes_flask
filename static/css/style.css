@@ -12,11 +12,10 @@
 
 /* Fade transition for carousel items */
 .carousel .item {
-    left: 0 !important;
-      -webkit-transition: opacity .2s; /*adjust timing here */
-         -moz-transition: opacity .2s;
-           -o-transition: opacity .2s;
-              transition: opacity .2s;
+    -webkit-transition: opacity .2s; /*adjust timing here */
+    -moz-transition: opacity .2s;
+    -o-transition: opacity .2s;
+    transition: opacity .2s;
 }
 
 .carousel-control {
