@@ -6,4 +6,7 @@
  "5": ["3",4],
  "6": ["Resting",5],
  "7": ["Interacting",6],
- "8": ["Moving",7]}
+ "8": ["Moving",7],
+ "9": ["No animal",8],
+ "10": ["FIRE!",9],
+ "11": ["Young present",10]}

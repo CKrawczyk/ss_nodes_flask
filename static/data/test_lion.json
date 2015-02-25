@@ -8,7 +8,10 @@
     {"answer_id": 2, "group": 2, "name": "Zebra", "fixed_level": 1},
     {"answer_id": 3, "group": 2, "name": "1", "fixed_level": 2},
     {"answer_id": 5, "group": 2, "name": "3", "fixed_level": 2},
-    {"answer_id": 7, "group": 2, "name": "interacting", "fixed_level": 3}],
+    {"answer_id": 7, "group": 2, "name": "interacting", "fixed_level": 3},
+    {"answer_id": 9, "group": 3, "name": "No animal", "fixed_level": 1},
+    {"answer_id": 10, "group": 4, "name": "Fire", "fixed_level": 1},
+    {"answer_id": 11, "group": 1, "name": "Young", "fixed_level": 3}],
  "links":[
      {"source": 0, "target": 1, "value": 35},
      {"source": 0, "target": 6, "value": 2},
@@ -20,7 +23,10 @@
      {"source": 6, "target": 7, "value": 1},
      {"source": 6, "target": 8, "value": 1},
      {"source": 7, "target": 9, "value": 1},
-     {"source": 8, "target": 9, "value": 1}],
+     {"source": 8, "target": 9, "value": 1},
+     {"source": 0, "target": 10, "value": 3},
+     {"source": 0, "target": 11, "value": 2},
+     {"source": 3, "target": 12, "value": 1}],
  "image_url": [
      "http://zooniverse-static.s3.amazonaws.com/www.snapshotserengeti.org/subjects/standard/54cfdad687ee0404d50991fd_0.JPG",
      "http://zooniverse-static.s3.amazonaws.com/www.snapshotserengeti.org/subjects/standard/54cfdad687ee0404d50991fd_1.JPG",

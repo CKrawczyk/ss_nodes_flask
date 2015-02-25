@@ -447,7 +447,7 @@ function updateData(gal_id){
 	        .attr("y", function(d) { return d.answer_id ? -image_offset[d.answer_id][1]*100-50 : -100; })
 	        .attr("clip-path", function(d) { return "url(#myClip" + d.node_id + ")"; })
 	        .attr("width", function(d) { return d.answer_id ? 100: 200; })
-	        .attr("height", function(d) { return d.answer_id ? 800: 200; });
+	        .attr("height", function(d) { return d.answer_id ? 1100: 200; });
 	    
 	    // add the mouse over text
 	    var mouse_over = genter.append("title")
@@ -527,10 +527,10 @@ function updateData(gal_id){
 			            r = 0.9*(node.radius + quad.point.radius);
 		            if (l < r) {
 			            l = (l - r) / l * .5;
-			            //node.x -= x *= l;
-			            node.y -= y *= l;
-			            //quad.point.x += x;
-			            quad.point.y += y;
+			            node.x -= x *= l;
+			            //node.y -= y *= l;
+			            quad.point.x += x;
+			            //quad.point.y += y;
 		            }
 		        }
 		        return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
