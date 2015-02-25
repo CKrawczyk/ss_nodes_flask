@@ -9,11 +9,17 @@ Array.prototype.contains = function(obj) {
 	return false;
 };
 
+var image_cycle = false;
+$('#carousel-image').carousel({interval: false})
 $('#playButton').click(function () {
-    $('#carousel-image').carousel('cycle');
-});
-$('#pauseButton').click(function () {
-    $('#carousel-image').carousel('pause');
+    if (image_cycle) {
+        image_cycle = false;
+        $('#carousel-image').carousel('pause');
+    } else {
+        image_cycle = true;
+        $('#carousel-image').data('bs.carousel').options.interval=1000;
+        $('#carousel-image').carousel('cycle');
+    }
 });
 
 // set up the margins and such

@@ -33,8 +33,7 @@
 
 #playButton,
 #pauseButton {
-    border-radius: 5px;
-    z-index: 50;
+    border-radius: 3px;
 }
 
 .gnode {
