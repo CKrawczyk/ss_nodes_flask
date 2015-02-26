@@ -24,7 +24,7 @@ $('#playButton').click(function () {
 
 // set up the margins and such
 var W = parseInt(d3.select('#tree').style('width'));
-var origin_y = -.5*parseInt(d3.select(".carousel-inner").style("height"));
+var origin_y = -.5*parseInt(d3.select(".carousel-inner").style("width"))/1.4;
 d3.select("#tree").style({"margin-top":origin_y+"px","z-index":"1"});
 var margin = {top: 1, right: 1, bottom: 1, left: 1},
     width = W - margin.left - margin.right,
@@ -223,7 +223,7 @@ function updateData(gal_id){
 	    force.stop();
 	    force.start();
     }
-
+    
     // add the draw window
     var raw_svg = d3.select("#body").append("svg")
 	    .attr("width", width + margin.left + margin.right)
@@ -277,16 +277,8 @@ function updateData(gal_id){
             $('#meta-title').html(title);
             $('#meta-body').html('<pre class="modal-data">'+metastring+'</pre>');
 	        $('#myModal').modal({show:true});
-        };       
-        
-        // update the svg size
-        origin_y = -.5*parseInt(d3.select(".carousel-inner").style("height"));
-        width = W - margin.left - margin.right;
-        height = -3.5*origin_y - margin.top - margin.bottom;
-        d3.select("#tree").style({"margin-top":origin_y+"px","z-index":"1"});
-        raw_svg.attr("width", width + margin.left + margin.right)
-	        .attr("height", height + margin.top + margin.bottom);
-        
+        };
+                
         // make sure reset button returns same object
         function reset_data(){
 	        updateData(current_search);
@@ -332,15 +324,16 @@ function updateData(gal_id){
 	    };
 	    // Find the links along the max vote path
 	    max_path(root.nodes[0]);
-	    
+        
 	    // Normalize votes by total number
 	    Total_value=root.nodes[0].value
 	    root.nodes.forEach(function(node, i) {
 	        node.value /= Total_value;
 	        node.radius =  height * Math.sqrt(node.value) / 18;
 	        node.node_id = i;
-	    });     
-	    // get the x position for each node
+	    });
+        
+	    // get the y position for each node
 	    computeNodeBreadths(root);
 	    // find how deep the tree goes and set the linkDistance to match 
 	    max_level = d3.max(root.nodes, function(d) {return d.fixed_level; });
@@ -381,9 +374,8 @@ function updateData(gal_id){
     var link = svg.selectAll(".link"),
 	    gnode = svg.selectAll(".gnode");
 
-    var first_draw = true;
-
     // create the update function to draw the tree
+    var gimage
     function update(nodes_in, links_in) {
 	    // Set data as node ids
 	    // add the nodes and links to the tree
@@ -400,7 +392,7 @@ function updateData(gal_id){
             .attr("class", function(d) { return d.is_max ? "link_max" : "link"; })
 	        .attr("d", diagonal)
             .style("stroke-width", function(d) { return .5 * height * Math.sqrt(d.value/Total_value) / 18; });
-
+        
 	    lenter.append("title")
 	        .text(function(d) { return d.value; })
         
@@ -421,7 +413,7 @@ function updateData(gal_id){
         
 	    // add a group to the node to scale it
 	    // with this scaling the image (with r=50px) will have the propper radius
-	    var gimage = genter.append("g")
+	    gimage = genter.append("g")
 	        .attr("transform", function(d) { return d.answer_id ? "scale(" + d.radius/50 + ")" : "scale(" + d.radius/100 + ")"; })
 
 	    // add a clipPath for a circle to corp the node image
@@ -468,9 +460,8 @@ function updateData(gal_id){
 	        var kx = 10 * e.alpha;
 	        
 	        root.nodes.forEach(function(d, i) {
-		        // fix the x value at the depth of the node
-		        // and add in the radius of the first node
-		        i!=0 ? d.y = d.fixed_y + root.nodes[0].radius+50 : d.y = 0;
+		        // fix the y value at the depth of the node
+                d.y = d.fixed_y ? d.fixed_y - .5*origin_y : d.fixed_y;
 		        // move low prob nodes left
 		        // and keep the groups together (to a lesser extent)
 		        if (root.nodes[1].value > root.nodes[2].value) { 
@@ -502,7 +493,7 @@ function updateData(gal_id){
 	        // if the new position is NaN use the previous position
 	        // this prevents links for disappearing
 	        root.nodes.forEach( function(d) {
-		        if (isNaN(d.y)) { d.y = d.y_old; }
+		        if (isNaN(d.x)) { d.x = d.x_old; }
 	        });
 	        
 	        // Translate the node group to the new position
@@ -538,13 +529,12 @@ function updateData(gal_id){
 	    }
     };
     // Find the x positions for each node
-    function computeNodeBreadths(root,first) {
+    function computeNodeBreadths(root) {
         // Tree depth is fixed at 4 for SS
         ky =  height / 4.2;
         root.nodes.forEach(function(node) {
-            node.fixed_y = node.fixed_y ? node.fixed_level : node.fixed_level+.2;
+            node.fixed_y = node.fixed_level ? node.fixed_level+.2 : node.fixed_level;
 	        node.fixed_y *= ky;
-            node.fixed_y -= 50;
 	    });
     };
 
@@ -575,5 +565,4 @@ function updateData(gal_id){
 	    update(current_nodes, current_links);
     };
 };
-
 

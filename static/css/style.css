@@ -36,7 +36,8 @@
     border-radius: 3px;
 }
 
-.gnode {
+.gnode,
+img {
     cursor: pointer;
 }
 
