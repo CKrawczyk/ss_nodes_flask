@@ -434,12 +434,12 @@ function updateData(gal_id){
 
 	    // add the inital image to the node
 	    gimage.append("image")
-	        .attr("xlink:href", function(d) { return d.answer_id ? "./static/images/workflow_ss.png" : ""})
+	        .attr("xlink:href", function(d) { return d.answer_id ? "./static/images/workflow_ss_full.png" : ""})
 	        .attr("x", function(d) { return d.answer_id ? -50: -100; })
 	        .attr("y", function(d) { return d.answer_id ? -image_offset[d.answer_id][1]*100-50 : -100; })
 	        .attr("clip-path", function(d) { return "url(#myClip" + d.node_id + ")"; })
 	        .attr("width", function(d) { return d.answer_id ? 100: 200; })
-	        .attr("height", function(d) { return d.answer_id ? 1100: 200; });
+	        .attr("height", function(d) { return d.answer_id ? 7400: 200; });
 	    
 	    // add the mouse over text
 	    var mouse_over = genter.append("title")
