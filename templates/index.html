@@ -59,7 +59,7 @@
       <div class="row" id="nav_row">
         <div class="col-md-9 col-sm-12">
           <div class="btn-group btn-group-sm pull-right-md" data-toggle="buttons" id="zoo_buttons">
-            <label class="btn btn-primary"  id="upload_lab">
+            <label class="btn btn-primary disabled"  id="upload_lab">
               <input type="radio" name="ss_tab" autocomplete="off"  id="upload" value="0">Upload
             </label>
             <label class="btn btn-primary active"  id="ss_1_lab">
@@ -208,7 +208,45 @@
               <h3 class="modal-title">Help</h3>
             </div>
             <div class="modal-body">
-              placeholder
+              <p>This web app visualizes the results of <a href="http://www.snapshotserengeti.org/">Snapshot Serengeti</a> as a node tree. Each tree shows the full vote path for one image.</p>
+              <p>This site is currently a work in progress, please send any commetns/suggestions to <a href="mailto:coleman.krawczyk@port.ac.uk">coleman.krawczyk@port.ac.uk</a>. <b>The current page shows FAKE data and is intended to show off the various featurs of the app.</b></p>
+              <h3>Featurs:</h3>
+              <ul>
+                <li>Each node represents the answer to a qustion asked to the useres of Snapshot Serengeti</li>
+                <li>The size of each node/link is proportianal to the sqrt(number of votes)</li>
+                <li>The maximal vote path is highlighted [Note: I am not sure how useful this is for Snapshot Serengeti]</li>
+              </ul>
+              
+              <h3>What you can do:</h3>
+              <ul>
+                <li>Mouse over each node to see a description of the node and the number of votes for it</li>
+                <li>Mouse over each link to see the number of votes along that link</li>
+                <li>Click and drage the nodes to move them around</li>
+                <ul>
+                  <li>When the nodes are moving they are allowed to pass thorugh each other, but after they settle down collision detection is turned on so they don't overlap</li>
+                  <li>The nodes with the most votes attempt to move towards the left</li>
+                </ul>
+                <li>Click on the image to bring up more information about the image</li>
+                <li>Click on the play/pause button to cycle through multiple images (when available)</li>
+                <li>Click on any other node to collapse/expand the links leading from it</li>
+                <li>The sliders at the bottome can be used to adjsut how the nodes interact with each other</li>
+                <ul>
+                  <li>Charge: how much the nodes repel each other (also proportional to vote count)</li>
+                  <li>Link Strength: how "stiff" the links between the nodes are</li>
+                  <li>Friction: how damped the node movement is (0=frictionless, 1=no movement)</li>
+                  <li>Reset button: redraw the tree using default values</li>
+                </ul>
+                <li>Use the "Dark/Light" buttons to toggle between color schemes</li>
+              </ul>
+
+              <h3>What still needs to be done</h3>
+              <ul>
+                <li>The node images for "Standing", "Resting", "Moving", "Eating", "Interacting", "Young present", and "Fire" are currently placeholders. If you have any ideas for good images let me know.</li>
+                <li>The images used for the nodes can be found <a href="http://icg.port.ac.uk/~krawcyzc/ss_nodes_flask/static/images/workflow_ss_full.png">here</a>. The animals are all taken from the Snapshot Serengeti example images.  If you think any of them should change let me know.</li>
+                <li>The app needs to be hooked up to the Snapshot Serengeti mongo database and the server side querying code needs to be written.</li>
+                <li>What would be the most useful quantity to search on aside from the <code>zooniverse_id?</code></li>
+                <li>Once the server side code is in place the <code>upload</code> button will be activated to allow users to upload a <code>csv</code> with search value (e.g. <code>zooniverse_id</code>) to look through via a dropdown list.</li>
+              </ul>
             </div>
             <div class="modal-footer">
               <button class="btn btn-default" data-dismiss="modal">Close</button>
